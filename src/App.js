@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UserContext from "./contexts/UserContext/UserContext";
+import UserTarea from "./contexts/UserContext/UserTarea";
+import { Spa } from "./Spa";
+
+
+
 
 function App() {
+  const [user, setUser] = useState(null)
+  const [tarea, setTarea] = useState(false)
+  const [tareaEdit, setTareaEdit] = useState({tarea: false, id: null})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{user, setUser}} >
+      <UserTarea.Provider value={{tarea, setTarea, tareaEdit, setTareaEdit}} >
+        <Spa />
+      </UserTarea.Provider>
+    </UserContext.Provider>
   );
 }
 
