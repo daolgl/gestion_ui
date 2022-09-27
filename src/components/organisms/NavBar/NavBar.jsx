@@ -11,7 +11,7 @@ export const NavBar = ({text}) => {
     return (
       <div>
         <Navbar>
-          <NavbarBrand href="/">GLWINBA</NavbarBrand>
+          <NavbarBrand>GLWINBA</NavbarBrand>
           <NavbarText><h1>{text}</h1></NavbarText>
           <NavbarText><UserPerfil /></NavbarText>
             

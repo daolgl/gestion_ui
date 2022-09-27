@@ -39,7 +39,7 @@ export const Tarea = () => {
                     asignado: values.asignar,
                     fecha_envio: "2022-09-10", 
                     fecha_final: "2022-09-30",
-                    isAcepted: true
+                    isAcepted: false
                   }
 
                   console.log(data)
@@ -51,11 +51,11 @@ export const Tarea = () => {
                     }})
                     .then(res => res.json())
                     .catch(error =>{ 
-                    console.error('Error:', error)
+                    // console.error('Error:', error)
                     setSubmitting(false);
                 })
                     .then(response =>{ 
-                    console.log('Success:', response)
+                    // console.log('Success:', response)
                     setSubmitting(false);
                     tarea.setTarea(false)
                 });
@@ -95,6 +95,7 @@ export const Tarea = () => {
                             size: 2
                         }}
                         >
+                        <Button  style={{"width": "20vw"}} onClick={()=> tarea.setTarea(false)} className="mt-4" color="info" size="sm"> Regresar </Button>
                         <Button  style={{"width": "20vw"}} type="submit" className="mt-4" color="info" size="sm"> Guardar </Button>
                         </Col>
                     </Row>

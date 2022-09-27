@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, Col, Container, Row } from 'reactstrap';
 import { NavBar } from '../../components/organisms/NavBar/NavBar';
@@ -13,6 +13,38 @@ export const TareaEdit = () => {
   const url = `http://localhost:8080/api/tareas/${tarea.tareaEdit.id}`
   const usuarios = useApi('http://localhost:8080/api/users/')
   const tareaValues = useApi(url)
+ useEffect(() => {
+    if(tareaValues.data?.isAcepted === false){
+        let data ={
+            tarea: tareaValues.data?.actividad,
+            descripcion: tareaValues.data?.descripcion_actividad,
+            asignar: tareaValues.data?.asignado,
+            actividad: tareaValues.data?.actividad, 
+            usuario : tareaValues.data?.usuario, 
+            estatus_actividad: tareaValues.data?.estatus_actividad, 
+            descripcion_actividad: tareaValues.data?.descripcion_actividad, 
+            documento_entregable: tareaValues.data?.documento_entregable, 
+            asignado: tareaValues.data?.asignado,
+            fecha_envio: tareaValues.data?.fecha_envio, 
+            fecha_final: tareaValues.data?.fecha_final,
+            isAcepted: true
+          }
+          fetch(url, {
+            method: 'PUT', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+            'Content-Type': 'application/json'
+            }})
+            .then(res => res.json())
+            .catch(error =>{ 
+            console.error('Error:', error)
+        })
+            .then(response =>{ 
+            console.log('Success:', response)
+        });
+    }
+    
+ }, [tareaValues])
  
   return (
     <>
