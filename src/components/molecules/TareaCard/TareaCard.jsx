@@ -1,26 +1,28 @@
 import React, { useContext } from 'react'
-import { Button, Card, CardText, CardTitle } from 'reactstrap'
 import UserTarea from '../../../contexts/UserContext/UserTarea'
-
+import clock from '../../atoms/clock.png'
+import user from '../../atoms/user.png'
+import './card.css'
 export const TareaCard = ({id, actividad, asignado, estatus}) => {
+  
+  let color = estatus === "En Proceso" ? "status-yellow" : estatus === "Completado" ? "status-green" : "status-red" 
+
+
     const tarea = useContext(UserTarea)
   return (
-    <Card
-    body
-    className="text-center m-2"
-  >
-    <CardTitle tag="h5">
+    <div className="tarea-card">
+    <h5>
       {actividad}
-    </CardTitle>
-    <CardText>
-      Asignado: {asignado}
-    </CardText>
-    <CardText>
-      Estatus: {estatus}
-    </CardText>
-    <Button color="primary" onClick={() => tarea.setTareaEdit({tarea:true, id})}>
+    </h5>
+    <h6>
+    <img src={user} alt="user"/>  Asignado: {asignado}
+    </h6>
+    <h6>
+    <img src={clock} alt="clock" /> Estatus: <span className={color}>{estatus}</span> 
+    </h6>
+    <button className="tarea-card_button" st onClick={() => tarea.setTareaEdit({tarea:true, id})}>
       Ver
-    </Button>
-  </Card>
+    </button>
+  </div>
   )
 }

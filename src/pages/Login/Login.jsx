@@ -1,13 +1,22 @@
 import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, Col, Container, FormGroup, Row } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import UserContext from '../../contexts/UserContext/UserContext';
+import profile from '../../components/atoms/profile.png'
+import './login.css'
 
 export const Login = () => {
   const user = useContext(UserContext)
   const url = "http://localhost:8080/api/users/login"
   return (
     <Container>
+      <div className='login'>
+
+     <div className='login-img'>
+        <img src={profile} alt="Logo"/>
+     </div>
+        
+ 
     <Formik
       initialValues={{ email: '', password: '' }}
       validate={values => {
@@ -43,31 +52,28 @@ export const Login = () => {
     >
       {({ isSubmitting }) => (
         <Form>
-            <Row style={{"width": "60vw"}}>
-                <Field type="email" name="email" placeholder="Email" className="mt-4"/>
+            <div>
+                <Field type="email" name="email" placeholder="Usuario" className="login-form_field"/>
                 <ErrorMessage name="email" component="div" />
-            </Row>
-            <Row style={{"width": "60vw"}}>
-                <Field type="password" name="password" placeholder="Password" className="mt-4"/>
+            </div>
+            <div >
+                <Field type="password" name="password" placeholder="Password" className="login-form_field"/>
                 <ErrorMessage name="password" component="div" />
                 
-            </Row>
-            <Row>
-                <Col
-                md={{
-                    offset: 3,
-                    size: 2
-                }}
-                >
-                <Button  style={{"width": "20vw"}} type="submit" disabled={isSubmitting} className="mt-4" color="info" size="sm">
+            </div>
+            <div>
+                <Button type="submit" disabled={isSubmitting} className="login-form_button" color="info" size="sm">
                                 Ingresar
-                        </Button>
-                        <h6 className="mt-2">Crea una cuenta </h6>
-                </Col>
-            </Row>
+                </Button>
+                
+            </div>
+        
+              <h6  className="login-form_create">Crea una cuenta </h6>
+            
         </Form>
       )}
     </Formik>
+    </div>
   </Container>
   )
 }

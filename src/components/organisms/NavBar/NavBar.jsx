@@ -6,18 +6,14 @@ import {
   NavbarText,
 } from 'reactstrap';
 import { UserPerfil } from '../../molecules/UserPerfil/UserPerfil';
-
+import './navbar.css'
 export const NavBar = ({text}) => {
     return (
       <div>
         <Navbar>
-          <NavbarBrand>GLWINBA</NavbarBrand>
-          <NavbarText><h1>{text}</h1></NavbarText>
-          <NavbarText><UserPerfil /></NavbarText>
-            
-            {/* <NavbarText>{user}</NavbarText>
-            <NavbarText>{email}</NavbarText> */}
-          
+          <NavbarBrand className='brand'>GLWINBA</NavbarBrand>
+          <NavbarText className='brand-text'>{text}</NavbarText>
+          <NavbarText><UserPerfil /></NavbarText>         
         </Navbar>
       </div>
     );

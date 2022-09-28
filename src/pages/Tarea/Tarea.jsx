@@ -5,7 +5,7 @@ import { NavBar } from '../../components/organisms/NavBar/NavBar';
 import { useApi } from '../../hooks/useApi/useApi';
 import UserContext from '../../contexts/UserContext/UserContext';
 import UserTarea from '../../contexts/UserContext/UserTarea';
-
+import "./tarea.css"
 export const Tarea = () => {
   const user = useContext(UserContext)
   const tarea = useContext(UserTarea)
@@ -16,7 +16,6 @@ export const Tarea = () => {
   return (
     <>
         <NavBar text={"Agregar Nueva Tarea"}/>
-        <Container>
             <Formik
             initialValues={{
                 tarea: "",
@@ -62,18 +61,20 @@ export const Tarea = () => {
             }}
             >
             {({ isSubmitting }) => (
-                <Form>
-                    <Row >
-                            <label htmlFor="tarea" style={{"width": "10vw"}}>Tarea: </label>
+                <Form className='tarea-form'>
+                    <div className='tarea-form_input'>
+                        <label htmlFor="tarea" >Tarea: </label>
 
-                            <Field type="text" name="tarea" style={{"width": "20vw"}}/>
+                            <Field type="text" name="tarea"/>
                             <ErrorMessage name="tarea" component="div" />
-                    </Row>
-                    <Row style={{"width": "60vw"}} className="mt-4">
-                        <label htmlFor="asignar" style={{"width": "10vw"}}>Asignar: </label>
-                        <Field name="asignar" placeholder="Asignar" style={{"width": "20vw"}}  as="select" defaultValue={"DEFAULT "}>
+                    </div>
+                            
+  
+                    <div className='tarea-form_input'>
+                         <label htmlFor="asignar" >Asignar: </label>
+                        <Field name="asignar" placeholder="Asignar"   as="select" defaultValue={"DEFAULT "}>
                             <option value="DEFAULT" hidden>
-                                Selecciona a que se le asignara la tarea
+                                Selecciona a quien se le asignara la tarea
                             </option>
                         {!usuarios.isLoading && usuarios.data.map( usuario => !usuario.admin &&
                             <option key={usuario.id} value={usuario.id}>
@@ -82,27 +83,23 @@ export const Tarea = () => {
                         )}
                         </Field>
                         <ErrorMessage name="asignar" component="div" />
-                    </Row>
-                    <Row style={{"width": "60vw"}} className="mt-4">
-                        <label htmlFor="descripcion" style={{"width": "5vw"}}>Descripcion: </label>
+                    </div>
+                    <div className='tarea-form_textarea'>
+                        <label htmlFor="descripcion" >Descripcion: </label>
                         <Field component="textarea" name="descripcion" className="mt-2" />
                         <ErrorMessage name="descripcion" component="div" />
-                    </Row>
-                    <Row >
-                        <Col
-                        md={{
-                            offset: 3,
-                            size: 2
-                        }}
-                        >
-                        <Button  style={{"width": "20vw"}} onClick={()=> tarea.setTarea(false)} className="mt-4" color="info" size="sm"> Regresar </Button>
-                        <Button  style={{"width": "20vw"}} type="submit" className="mt-4" color="info" size="sm"> Guardar </Button>
-                        </Col>
-                    </Row>
-                </Form>
+                    </div>
+
+                    <div>
+                        <Button   onClick={()=> tarea.setTarea(false)} className="mt-4 tarea-form_button" color="info" size="sm"> Regresar </Button>
+                        <Button   type="submit" className="mt-4 tarea-form_button" color="info" size="sm"> Guardar </Button>
+                    </div>    
+
+                        
+
+                </Form>  
             )}
             </Formik>
-        </Container>
     </>
     
   )

@@ -1,0 +1,45 @@
+.home-form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-direction: center;
+    justify-content: center;
+}
+
+.home-form_input{
+    width: 475px;
+    height: 60px;
+    border: 1px solid #A6A6A6;
+    border-radius: 15px;
+}
+
+
+.home-form_button_new{
+    width: 197px;
+    height: 55px;
+    background: #28AED9;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    border: none;
+    color: #FFFFFF;
+    margin: 47px 8px 21px 8px;
+}
+
+.home-form_button_consult{
+    width: 197px;
+    height: 55px;
+    background: #96F8B1;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    border: none;
+    color: #000000;
+    margin: 47px 8px 21px 8px;
+}

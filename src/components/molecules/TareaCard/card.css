@@ -1,0 +1,82 @@
+.tarea-card{
+    width: 300px;
+    height: 179px;
+    border: 1px solid #9D9D9D;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 7px;
+    margin-left: 7px;
+    margin-bottom: 21px;
+}
+
+.tarea-card > h5, h6{
+    margin-top: 14px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    margin-left: 20px;
+    
+}
+
+.tarea-card >  h6{
+    text-align: start;
+}
+
+.tarea-card_button{
+    width: 117px;
+    height: 31px;
+
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
+    color: #000000;
+
+}
+
+.tarea-card_button:hover{
+    background: #2294B8;
+}
+
+.status-red{
+    background: #F87272;
+    border: 1px solid #DB2E2E;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+
+.status-green{
+    background: #CCFE03;
+    border: 1px solid #1AFF3E;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+}
+
+.status-yellow{
+    background: #FEF403;
+    border: 1px solid #FFCD1A;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+}

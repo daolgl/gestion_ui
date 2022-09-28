@@ -1,0 +1,25 @@
+.brand{
+    width: 218px;
+    height: 59px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 59px;
+    color: #000000;
+    
+}
+
+.brand-text{
+    width:  378px;
+    height: 47px;
+    left: 552px;
+    top: 30px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+    color: #000000;
+}

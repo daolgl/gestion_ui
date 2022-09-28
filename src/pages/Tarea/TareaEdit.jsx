@@ -5,7 +5,7 @@ import { NavBar } from '../../components/organisms/NavBar/NavBar';
 import { useApi } from '../../hooks/useApi/useApi';
 import UserContext from '../../contexts/UserContext/UserContext';
 import UserTarea from '../../contexts/UserContext/UserTarea';
-
+import "./tarea.css"
 export const TareaEdit = () => {
   const [disabled, setDisabled] = useState(true)
   const user = useContext(UserContext)
@@ -48,8 +48,8 @@ export const TareaEdit = () => {
  
   return (
     <>
+        
         <NavBar />
-        <Container>
             <Formik
             enableReinitialize={true}
             initialValues={{
@@ -97,16 +97,16 @@ export const TareaEdit = () => {
             }}
             >
             {({ isSubmitting }) => (
-                <Form>
-                    <Row >
-                            <label htmlFor="tarea" style={{"width": "10vw"}}>Tarea: </label>
+                <Form  className='tarea-form'>
+                    <div className='tarea-form_input' >
+                            <label htmlFor="tarea">Tarea: </label>
 
-                            <Field type="text" name="tarea" style={{"width": "20vw"}} disabled={disabled}/>
+                            <Field type="text" name="tarea" disabled={disabled}/>
                             <ErrorMessage name="tarea" component="div" />
-                    </Row>
-                    <Row style={{"width": "60vw"}} className="mt-4">
-                        <label htmlFor="asignar" style={{"width": "10vw"}}>Asignar: </label>
-                        <Field name="asignar" placeholder="Asignar" style={{"width": "20vw"}}  as="select" disabled={disabled}>
+                    </div>
+                    <div className='tarea-form_input'>
+                        <label htmlFor="asignar">Asignar: </label>
+                        <Field name="asignar" placeholder="Asignar"  as="select" disabled={disabled}>
                         {!usuarios.isLoading && usuarios.data.map( usuario => !usuario.admin &&
                             <option key={usuario.id} value={usuario.id}>
                                 {`${usuario.first_name} ${usuario.last_name}`}
@@ -114,32 +114,29 @@ export const TareaEdit = () => {
                         )}
                         </Field>
                         <ErrorMessage name="asignar" component="div" />
-                    </Row>
-                    <Row style={{"width": "60vw"}} className="mt-4">
-                        <label htmlFor="descripcion" style={{"width": "5vw"}}>Descripcion: </label>
+                    </div>
+                    <div className='tarea-form_textarea'>
+                        <label htmlFor="descripcion">Descripcion: </label>
                         <Field component="textarea" name="descripcion" className="mt-2" disabled={disabled}/>
                         <ErrorMessage name="descripcion" component="div" />
-                    </Row>
-                    <Row >
-                        <Col
-                        md={{
-                            offset: 3,
-                            size: 2
-                        }}
-                        >
-                            <Button  style={{"width": "20vw"}} onClick={()=> tarea.setTareaEdit({tarea: false, id: null})} className="mt-4" color="info" size="sm"> Regresar </Button>
+                    </div>
+                    <div className='tarea-form_entregables'>
+                        Da click o arrastra para cargar los entregables
+                    </div>
+                    <div >
+        
+                            <Button  onClick={()=> tarea.setTareaEdit({tarea: false, id: null})} className="mt-4 tarea-form_button" color="info" size="sm"> Regresar </Button>
                             {disabled ? 
-                                <Button  style={{"width": "20vw"}}  onClick={() => setDisabled(false)} className="mt-4" color="info" size="sm"> Modificar </Button> :
-                                <Button  style={{"width": "20vw"}} type="submit" className="mt-4" color="info" size="sm"> Guardar </Button>
+                                <Button    onClick={() => setDisabled(false)} className="mt-4 tarea-form_button_modify" color="info" size="sm"> Modificar </Button> :
+                                <Button  type="submit" className="mt-4 tarea-form_button" color="info" size="sm"> Guardar </Button>
                         }
-                            
-                            
-                        </Col>
-                    </Row>
+                    </div>
+
+                    
                 </Form>
             )}
             </Formik>
-        </Container>
+      
     </>
     
   )
