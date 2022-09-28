@@ -3,7 +3,6 @@ import { Row } from 'reactstrap'
 import { TareaCard } from '../../molecules/TareaCard/TareaCard'
 import "./tareaList.css"
 export const TareasList = ({tareas}) => {
-
   return (
     <>
       <div className='tarea-list'>
@@ -12,7 +11,7 @@ export const TareasList = ({tareas}) => {
             }
             {
                 !tareas.isLoading && tareas.data.map(tarea =>
-                    <TareaCard key={tarea.id} id={tarea.id} actividad={tarea.actividad} asignado={tarea.asignado} estatus ={tarea.estatus_actividad} />
+                    <TareaCard key={tarea.id} id={tarea.id} actividad={tarea.actividad} asignado={`${tarea.first_name} ${tarea.last_name}`} estatus ={tarea.estatus_actividad} />
                 )
             }
      </div>

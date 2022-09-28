@@ -18,10 +18,10 @@ export const HomeContainer = () => {
 
   const tareasConFiltro = (e) =>{
     setFiltro(e.target.value)
-   let filtrado = tareas.data?.filter(tarea => tarea.actividad.includes(filtro) || tarea.estatus_actividad.includes(filtro) )
+   let filtrado = tareas.data?.filter(tarea => tarea.actividad.includes(filtro) || tarea.estatus_actividad.includes(filtro) || tarea.first_name.includes(filtro) || tarea.last_name.includes(filtro))
    setTareasFiltradas({data: filtrado, isLoading: false})
   }
-//   console.log(tareas)
+
   return (
     <>
       <NavBar text={"Tareas Pendientes"}/>
@@ -76,14 +76,7 @@ export const HomeContainer = () => {
                 </Form>
             )}
             </Formik>
-
-
-
-
-
-
-      <TareasList tareas={filtro ? tareasFiltradas : tareas} />
-      
+        <TareasList tareas={filtro ? tareasFiltradas : tareas} /> 
       </>
   )
 }

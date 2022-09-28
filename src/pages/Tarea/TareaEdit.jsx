@@ -3,9 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, Col, Container, Row } from 'reactstrap';
 import { NavBar } from '../../components/organisms/NavBar/NavBar';
 import { useApi } from '../../hooks/useApi/useApi';
+import toast, { Toaster } from 'react-hot-toast';
 import UserContext from '../../contexts/UserContext/UserContext';
 import UserTarea from '../../contexts/UserContext/UserTarea';
 import "./tarea.css"
+
 export const TareaEdit = () => {
   const [disabled, setDisabled] = useState(true)
   const user = useContext(UserContext)
@@ -48,7 +50,7 @@ export const TareaEdit = () => {
  
   return (
     <>
-        
+        <Toaster/>
         <NavBar />
             <Formik
             enableReinitialize={true}
@@ -76,8 +78,7 @@ export const TareaEdit = () => {
                     fecha_final: "2022-09-30",
                     isAcepted: true
                   }
-
-                  console.log(data)
+                  
                 fetch(url, {
                     method: 'PUT', // or 'PUT'
                     body: JSON.stringify(data), // data can be `string` or {object}!
@@ -86,11 +87,11 @@ export const TareaEdit = () => {
                     }})
                     .then(res => res.json())
                     .catch(error =>{ 
-                    console.error('Error:', error)
+                    // console.error('Error:', error)
                     setSubmitting(false);
                 })
                     .then(response =>{ 
-                    console.log('Success:', response)
+                    // console.log('Success:', response)
                     setSubmitting(false);
                     tarea.setTarea(false)
                 });
@@ -128,7 +129,8 @@ export const TareaEdit = () => {
                             <Button  onClick={()=> tarea.setTareaEdit({tarea: false, id: null})} className="mt-4 tarea-form_button" color="info" size="sm"> Regresar </Button>
                             {disabled ? 
                                 <Button    onClick={() => setDisabled(false)} className="mt-4 tarea-form_button_modify" color="info" size="sm"> Modificar </Button> :
-                                <Button  type="submit" className="mt-4 tarea-form_button" color="info" size="sm"> Guardar </Button>
+                                <Button  type="submit" className="mt-4 tarea-form_button" color="info" size="sm" onClick={() => 
+                                    toast.success('!Editado exitosamente!')}> Guardar </Button>
                         }
                     </div>
 

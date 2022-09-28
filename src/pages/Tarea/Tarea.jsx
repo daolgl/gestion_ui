@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, Col, Container, Row } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { NavBar } from '../../components/organisms/NavBar/NavBar';
 import { useApi } from '../../hooks/useApi/useApi';
+import toast, { Toaster } from 'react-hot-toast';
 import UserContext from '../../contexts/UserContext/UserContext';
 import UserTarea from '../../contexts/UserContext/UserTarea';
 import "./tarea.css"
+
 export const Tarea = () => {
   const user = useContext(UserContext)
   const tarea = useContext(UserTarea)
@@ -15,6 +17,7 @@ export const Tarea = () => {
   const url = "http://localhost:8080/api/tareas/"
   return (
     <>
+        <Toaster/>
         <NavBar text={"Agregar Nueva Tarea"}/>
             <Formik
             initialValues={{
@@ -53,10 +56,13 @@ export const Tarea = () => {
                     // console.error('Error:', error)
                     setSubmitting(false);
                 })
-                    .then(response =>{ 
+                    .then(response =>{
                     // console.log('Success:', response)
                     setSubmitting(false);
-                    tarea.setTarea(false)
+                    toast.success('!Guardado exitosamente!')
+                    setTimeout(() => {
+                        tarea.setTarea(false)
+                    }, 1000);
                 });
             }}
             >
@@ -68,8 +74,6 @@ export const Tarea = () => {
                             <Field type="text" name="tarea"/>
                             <ErrorMessage name="tarea" component="div" />
                     </div>
-                            
-  
                     <div className='tarea-form_input'>
                          <label htmlFor="asignar" >Asignar: </label>
                         <Field name="asignar" placeholder="Asignar"   as="select" defaultValue={"DEFAULT "}>
@@ -93,10 +97,7 @@ export const Tarea = () => {
                     <div>
                         <Button   onClick={()=> tarea.setTarea(false)} className="mt-4 tarea-form_button" color="info" size="sm"> Regresar </Button>
                         <Button   type="submit" className="mt-4 tarea-form_button" color="info" size="sm"> Guardar </Button>
-                    </div>    
-
-                        
-
+                    </div>
                 </Form>  
             )}
             </Formik>

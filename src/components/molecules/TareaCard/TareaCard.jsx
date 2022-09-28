@@ -6,8 +6,6 @@ import './card.css'
 export const TareaCard = ({id, actividad, asignado, estatus}) => {
   
   let color = estatus === "En Proceso" ? "status-yellow" : estatus === "Completado" ? "status-green" : "status-red" 
-
-
     const tarea = useContext(UserTarea)
   return (
     <div className="tarea-card">
@@ -20,7 +18,7 @@ export const TareaCard = ({id, actividad, asignado, estatus}) => {
     <h6>
     <img src={clock} alt="clock" /> Estatus: <span className={color}>{estatus}</span> 
     </h6>
-    <button className="tarea-card_button" st onClick={() => tarea.setTareaEdit({tarea:true, id})}>
+    <button className="tarea-card_button" st onClick={() => tarea.setTareaEdit({tarea:true, id: id})}>
       Ver
     </button>
   </div>
